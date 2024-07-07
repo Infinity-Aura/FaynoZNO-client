@@ -4,6 +4,12 @@ import { showFxErrors } from 'shared/ui/lib/notify-user';
 
 import { createUser, deleteUser, getUser, getUsers, updateUser } from './api';
 
+export enum Role {
+  Student = 'student',
+  Teacher = 'teacher',
+  Admin = 'admin',
+}
+
 const domain = createDomain('entities/user');
 
 export const createUserFx = domain.effect(createUser);

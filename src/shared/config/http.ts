@@ -4,7 +4,7 @@ import { AuthRes } from './types';
 export const API_URL = '/api';
 
 export const http = globalAxios.create({
-  baseURL: API_URL,
+  baseURL: import.meta.env.VITE_SERVER_URL,
   withCredentials: true,
 });
 
