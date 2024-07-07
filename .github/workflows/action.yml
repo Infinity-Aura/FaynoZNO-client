@@ -25,11 +25,12 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-        - name: Install SSH Keys
-          run: |
-            install -m 600 -D /dev/null ~/.ssh/id_rsa
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+          with:
+            ORIGIN: ${{ secrets.SSH_HOST }}
+            SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            NAME: production
+            USER: ${{ secrets.SSH_USER }}
         - name: Connect and Pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker load"
         - name: Cleanup
