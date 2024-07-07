@@ -2,7 +2,7 @@ name: Realese and Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   REGISTRY: aura-dev
