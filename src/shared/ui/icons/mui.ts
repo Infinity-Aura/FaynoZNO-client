@@ -22,6 +22,7 @@ export {
   FormatListBulletedRounded as FormatListBulletedRoundedIcon,
   AccessTimeRounded as AccessTimeRoundedIcon,
   InsertPhotoOutlined as InsertPhotoOutlinedIcon,
+  EditRounded as EditRoundedIcon,
   ExpandMore as ExpandMoreIcon,
   FiberManualRecordRounded as FiberManualRecordRoundedIcon,
   PersonRounded as PersonRoundedIcon,

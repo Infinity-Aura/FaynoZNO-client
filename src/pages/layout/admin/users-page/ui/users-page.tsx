@@ -5,16 +5,21 @@ import { AdminDeleteUserMenuItem } from 'features/admin/user/delete';
 
 import { User } from 'entities/user';
 
-import { Box, Card, Typography } from 'shared/ui/kit';
+import { Box, Card, FormControl, InputLabel, MenuItem, Select, Typography } from 'shared/ui/kit';
 import { DataGrid, createColumnHelper } from 'shared/components/data-grid';
 import { ActionsMenu } from 'shared/components/actions-menu';
 
 import * as model from '../model';
+import { Role } from 'entities/user/model';
+import { AdminEditUserRoleMenuItem } from 'features/admin/user/edit-role';
 
 const renderRowActions = (record: User) => {
   const items = [
     {
       component: <AdminDeleteUserMenuItem key="delete" id={record.id} />,
+    },
+    {
+      component: <AdminEditUserRoleMenuItem key="edit-role" id={record.id} />,
     },
   ].map((el) => el.component);
 
@@ -81,26 +86,43 @@ const userColumnsDef = [
   }),
 ];
 
-export const AdminTeachersPage = () => {
+export const AdminUsersPage = () => {
   const [params, setParams] = React.useState<{ page: number; pageSize: number }>({
     page: 1,
     pageSize: 2,
   });
-
   useGate(model.Gate);
 
-  const teachers = useStore(model.$teachers);
+  const users = useStore(model.$users);
+  const selectedRolesFilter = useStore(model.$selectedRolesFilter);
   const loading = useStore(model.getUsersFx.pending);
 
   return (
     <Card sx={{ p: 2 }}>
+      <Box>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Roles filter</InputLabel>
+          <Select
+            label="Roles"
+            value={selectedRolesFilter}
+            onChange={({ target: { value } }) => model.rolesFilterChanged(value as Role | 'all')}
+          >
+            <MenuItem value="all">All</MenuItem>
+            {Object.entries(Role).map(([key, value]) => (
+              <MenuItem key={key} value={value}>
+                {key}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
       <DataGrid<User>
-        data={teachers ?? []}
+        data={users ?? []}
         columns={userColumnsDef}
         params={{
           page: params.page,
           pageSize: params.pageSize,
-          totalCount: teachers?.length ?? 0,
+          totalCount: users?.length ?? 0,
           rowsPerPage: [2, 4, 50],
         }}
         paramsChanged={({ page, pageSize }) =>

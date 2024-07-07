@@ -31,7 +31,7 @@ export const deleteUser = async (userId: string): Promise<User> => {
   };
 };
 
-export const updateUser = async ({ user }: { user: User }): Promise<User> => {
+export const updateUser = async ({ user }: { user: Partial<User> }): Promise<User> => {
   let response;
   try {
     response = await http.patch(`/user/${user.id}`, user);

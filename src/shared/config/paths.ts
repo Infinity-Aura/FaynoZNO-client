@@ -29,8 +29,7 @@ export const PATHS = {
     root: '/admin',
     orders: '/admin/orders',
     courses: '/admin/courses',
-    teachers: '/admin/teachers',
-    students: '/admin/students',
+    users: '/admin/users',
     groups: '/admin/groups',
   },
   notFound: {

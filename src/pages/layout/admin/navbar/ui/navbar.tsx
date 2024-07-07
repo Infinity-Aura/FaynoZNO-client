@@ -4,11 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { Box, Button } from 'shared/ui/kit';
 
 const ADMIN_PAGES = [
-  { name: 'Курси', root: '/admin/courses' },
-  { name: 'Викладачі', root: '/admin/teachers' },
-  { name: 'Студенти', root: '/admin/students' },
-  { name: 'Групи', root: '/admin/groups' },
   { name: 'Замовлення', root: '/admin/orders' },
+  { name: 'Курси', root: '/admin/courses' },
+  { name: 'Користувачі', root: '/admin/users' },
+  { name: 'Групи', root: '/admin/groups' },
 ];
 
 export const AdminNavBar = () => {

@@ -22,8 +22,7 @@ import { HomePage } from 'pages/layout/home-page';
 import { AdminLayout } from './layout/admin/admin-layout';
 import { AdminCoursesPage } from './layout/admin/courses-page';
 import { AdminOrdersPage } from './layout/admin/orders-page';
-import { AdminTeachersPage } from './layout/admin/teachers-page';
-import { AdminStudentsPage } from './layout/admin/students-page';
+import { AdminUsersPage } from './layout/admin/users-page';
 import { AdminGroupsPage } from './layout/admin/groups-page';
 
 const routesMap = [
@@ -118,12 +117,8 @@ const routesMap = [
             element: <AdminCoursesPage />,
           },
           {
-            path: PATHS.admin.teachers,
-            element: <AdminTeachersPage />,
-          },
-          {
-            path: PATHS.admin.students,
-            element: <AdminStudentsPage />,
+            path: PATHS.admin.users,
+            element: <AdminUsersPage />,
           },
           {
             path: PATHS.admin.groups,
